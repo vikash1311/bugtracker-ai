@@ -3,7 +3,7 @@
 > **Production-grade REST API for AI-powered bug tracking.**  
 > Built with Java · Spring Boot · MySQL · JWT · Spring Security 7 · OpenAI API
 
-🔗 **Frontend Repo:** [bugtracker-ai-frontend](https://github.com/yourusername/bugtracker-frontend)  
+🔗 **Frontend Repo:** [bugtracker-ai-frontend](https://github.com/yourusername/bugtracker-ai-frontend)  
 🌐 **Live App:** [your-live-url.com](https://your-live-url.com)
 
 ---
@@ -132,7 +132,7 @@ POST   /api/ai/generate-steps       → AI reproduction steps
 ### Installation
 
 ```bash
-git clone https://github.com/yourusername/bugtracker-backend
+git clone https://github.com/vikash1311/bugtracker-ai
 cd bugtracker-backend
 ```
 
@@ -192,9 +192,9 @@ API runs at `http://localhost:8080`
 
 ## 🔗 Related
 
-- 🎨 **Frontend Repo:** [bugtracker-ai-frontend](https://github.com/vikash1311/bugtracker-frontend)
+- 🎨 **Frontend Repo:** [bugtracker-ai-frontend](https://github.com/vikash1311/bugtracker-ai-frontend)
 - 🌐 **Live App:** [your-live-url.com](https://your-live-url.com)
-- 👤 **Portfolio:** [yourportfolio.com](https://yourportfolio.com)
+- 👤 **Portfolio:** [yourportfolio.com](https://vikash-gautam.netlify.app)
 
 ---
 
@@ -202,7 +202,7 @@ API runs at `http://localhost:8080`
 
 **Vikash Gautam** — Full Stack Developer  
 📧 gautam7.ven@gmail.com  
-🔗 [LinkedIn](https://linkedin.com/in/yourprofile) · [Portfolio](https://yourportfolio.com) · [GitHub](https://github.com/yourusername)
+🔗 [LinkedIn](https://linkedin.com/in/vikash2808) · [Portfolio](https://vikash-gautam.netlify.app) · [GitHub](https://github.com/vikash1311)
 
 ---
 
