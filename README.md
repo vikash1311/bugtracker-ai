@@ -1,93 +1,122 @@
-# 🐛 BugTracker AI — Full Stack SaaS
+# 🐛 BugTracker AI — Backend
 
-> **AI-powered bug tracking with smart triage, duplicate detection, and automated reproduction steps.**  
-> Built with Java · Spring Boot · MySQL · React · JWT · Spring Security · OpenAI API
+> **Production-grade REST API for AI-powered bug tracking.**  
+> Built with Java · Spring Boot · MySQL · JWT · Spring Security 7 · OpenAI API
 
-![Dashboard Preview](./screenshots/dashboard.png)
-
----
-
-## 🚀 Live Demo
-
-🔗 **[View Live App](https://your-live-url.com)**  
-👤 **Demo Credentials:**  
-- Admin: `admin@bugtracker.com` / `Admin@123`  
-- Developer: `dev@bugtracker.com` / `Dev@123`  
-- Tester: `tester@bugtracker.com` / `Tester@123`
+🔗 **Frontend Repo:** [bugtracker-ai-frontend](https://github.com/yourusername/bugtracker-frontend)  
+🌐 **Live App:** [your-live-url.com](https://your-live-url.com)
 
 ---
 
-## ✨ Key Features
+## ✨ Features
 
-### 🤖 AI-Powered Triage
-- **Auto-suggests bug severity** from plain language descriptions — no manual classification needed
-- **Detects duplicate bugs** using semantic similarity before submission
-- **Generates developer-ready reproduction steps** automatically from bug descriptions
+### 🔐 Security
+- JWT-based stateless authentication
+- Spring Security 7 with role-based authorization (Admin, Developer, Tester)
+- CORS configured inside Spring Security filter chain
+- Password encryption with BCrypt
 
-### 🔐 Role-Based Access Control (RBAC)
-| Role | Permissions |
-|------|------------|
-| **Admin** | Full access — manage users, projects, all bugs |
-| **Developer** | View assigned bugs, update status, add comments |
-| **Tester** | Report bugs, view project bugs |
+### 🤖 AI Integration
+- **Auto-suggest bug severity** from plain language descriptions via OpenAI API
+- **Semantic duplicate detection** — compares new bug against existing ones
+- **Reproduction step generation** — developer-ready steps from bug description
 
-### 📊 Dashboard & Analytics
-- Real-time bug status overview with visual charts
-- Project-level bug tracking (Open, In Progress, Resolved, Closed)
-- Activity logs for full audit trail
-
-### ⚙️ Production-Grade Backend
-- **Controller–Service–Repository + DTO** architecture pattern
+### ⚙️ Backend Architecture
+- **Controller → Service → Repository** layered architecture
+- **DTO pattern** for clean request/response separation
 - **@Transactional** on service layer to prevent lazy loading issues
-- **CORS** configured inside Spring Security 7 filter chain
-- **JWT** authentication with Spring Security 7
-- **Pagination & filtering** across all bug lists
+- **Pagination & filtering** on all list endpoints (50 records/load)
+- **Activity logging** for full audit trail
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| **Backend** | Java, Spring Boot, Spring Security 7, JWT |
-| **Frontend** | React.js, Redux, Tailwind CSS |
-| **Database** | MySQL |
-| **AI** | OpenAI API (GPT-4) |
-| **Auth** | JWT + Spring Security |
-| **Deploy** | Render (backend) · Netlify (frontend) |
+| Technology | Purpose |
+|-----------|---------|
+| Java 17 | Core language |
+| Spring Boot 3 | Application framework |
+| Spring Security 7 | Auth + RBAC |
+| JWT | Stateless authentication |
+| MySQL 8 | Relational database |
+| Spring Data JPA | ORM / data access |
+| OpenAI API | AI triage features |
+| Maven | Build tool |
+| Render | Deployment |
 
 ---
 
-## 📸 Screenshots
-
-| Login | Dashboard |
-|-------|-----------|
-| ![Login](./screenshots/login.png) | ![Dashboard](./screenshots/dashboard.png) |
-
-| Report Bug (AI Triage) | Projects |
-|------------------------|----------|
-| ![Report Bug](./screenshots/report-bug.png) | ![Projects](./screenshots/projects.png) |
-
-| User Management |
-|----------------|
-| ![Users](./screenshots/users.png) |
-
----
-
-## 🏗️ Architecture
+## 📁 Project Structure
 
 ```
-├── Backend (Spring Boot)
-│   ├── Controller Layer       → REST API endpoints
-│   ├── Service Layer          → Business logic + @Transactional
-│   ├── Repository Layer       → JPA/MySQL data access
-│   ├── DTO Pattern            → Clean request/response mapping
-│   └── Security Config        → JWT + CORS + Spring Security 7
-│
-└── Frontend (React)
-    ├── Redux Store            → Global state management
-    ├── Role-based routing     → Admin / Developer / Tester views
-    └── OpenAI integration     → AI triage UI (suggest, duplicate, steps)
+backend/
+└── src/main/java/com/bugtracker/
+    ├── controller/
+    │   ├── AuthController.java
+    │   ├── BugController.java
+    │   ├── ProjectController.java
+    │   ├── UserController.java
+    │   └── AIController.java
+    ├── service/
+    │   ├── BugService.java
+    │   ├── ProjectService.java
+    │   ├── UserService.java
+    │   └── AITriageService.java
+    ├── repository/
+    │   ├── BugRepository.java
+    │   ├── ProjectRepository.java
+    │   └── UserRepository.java
+    ├── dto/
+    │   ├── BugRequestDTO.java
+    │   ├── BugResponseDTO.java
+    │   └── AuthRequestDTO.java
+    ├── model/
+    │   ├── Bug.java
+    │   ├── Project.java
+    │   └── User.java
+    └── security/
+        ├── JwtFilter.java
+        ├── JwtUtil.java
+        └── SecurityConfig.java
+```
+
+---
+
+## 🔑 API Endpoints
+
+### Auth
+```
+POST   /api/auth/login              → Login, returns JWT token
+```
+
+### Bugs
+```
+GET    /api/bugs?page=0&size=10     → Paginated bug list (with filters)
+GET    /api/bugs/{id}               → Get bug by ID
+POST   /api/bugs                    → Report new bug
+PUT    /api/bugs/{id}/status        → Update bug status
+DELETE /api/bugs/{id}               → Delete bug (Admin only)
+```
+
+### Projects
+```
+GET    /api/projects                → List all projects
+POST   /api/projects                → Create project (Admin only)
+GET    /api/projects/{id}/bugs      → Get bugs for a project
+```
+
+### Users
+```
+GET    /api/users                   → List all users (Admin only)
+POST   /api/users                   → Create user (Admin only)
+PUT    /api/users/{id}/status       → Activate/deactivate user
+```
+
+### AI Triage
+```
+POST   /api/ai/suggest-priority     → AI severity suggestion
+POST   /api/ai/check-duplicate      → AI duplicate detection
+POST   /api/ai/generate-steps       → AI reproduction steps
 ```
 
 ---
@@ -96,80 +125,76 @@
 
 ### Prerequisites
 - Java 17+
-- Node.js 18+
 - MySQL 8+
+- Maven 3.8+
 - OpenAI API key
 
-### Backend Setup
+### Installation
+
 ```bash
-git clone https://github.com/yourusername/bugtracker-ai
-cd bugtracker-ai/backend
+git clone https://github.com/yourusername/bugtracker-backend
+cd bugtracker-backend
+```
 
-# Configure application.properties
+### Configuration
+
+```bash
 cp src/main/resources/application.example.properties src/main/resources/application.properties
-# Add your MySQL credentials and OpenAI API key
+```
 
+```properties
+# Database
+spring.datasource.url=jdbc:mysql://localhost:3306/bugtracker
+spring.datasource.username=your_mysql_username
+spring.datasource.password=your_mysql_password
+
+# JPA
+spring.jpa.hibernate.ddl-auto=update
+
+# JWT
+jwt.secret=your_jwt_secret_key
+jwt.expiration=86400000
+
+# OpenAI
+openai.api.key=your_openai_api_key
+```
+
+### Database Setup
+
+```sql
+CREATE DATABASE bugtracker;
+-- Tables auto-created by Spring JPA on first run
+```
+
+### Run
+
+```bash
 mvn spring-boot:run
 ```
 
-### Frontend Setup
-```bash
-cd ../frontend
-npm install
-
-# Configure environment
-cp .env.example .env
-# Add your backend URL
-
-npm run dev
-```
-
-### Database
-```bash
-# MySQL — create database
-CREATE DATABASE bugtracker;
-# Tables are auto-created via Spring JPA on first run
-```
+API runs at `http://localhost:8080`
 
 ---
 
-## 📁 Project Structure
+## 🔐 Role Permissions Matrix
 
-```
-bugtracker-ai/
-├── backend/
-│   ├── src/main/java/com/bugtracker/
-│   │   ├── controller/        # REST controllers
-│   │   ├── service/           # Business logic
-│   │   ├── repository/        # JPA repositories
-│   │   ├── dto/               # Data transfer objects
-│   │   ├── model/             # Entity classes
-│   │   └── security/          # JWT + Spring Security config
-│   └── pom.xml
-└── frontend/
-    ├── src/
-    │   ├── components/        # Reusable UI components
-    │   ├── pages/             # Route-level pages
-    │   ├── store/             # Redux slices
-    │   └── api/               # API service layer
-    └── package.json
-```
+| Endpoint | Admin | Developer | Tester |
+|----------|-------|-----------|--------|
+| View all bugs | ✅ | ✅ | ✅ |
+| Report bug | ✅ | ✅ | ✅ |
+| Update bug status | ✅ | ✅ | ❌ |
+| Delete bug | ✅ | ❌ | ❌ |
+| Manage users | ✅ | ❌ | ❌ |
+| Create project | ✅ | ❌ | ❌ |
+| AI triage | ✅ | ✅ | ✅ |
 
 ---
 
-## 🔑 API Endpoints (Sample)
+## 🔗 Related
 
-```
-POST   /api/auth/login              → JWT login
-GET    /api/bugs?page=0&size=10     → Paginated bug list
-POST   /api/bugs                    → Report new bug
-PUT    /api/bugs/{id}/status        → Update bug status
-POST   /api/ai/suggest-priority     → AI severity suggestion
-POST   /api/ai/check-duplicate      → AI duplicate detection
-POST   /api/ai/generate-steps       → AI reproduction steps
-GET    /api/projects                → List all projects
-GET    /api/users                   → List all users (Admin only)
-```
+- 🎨 **Frontend Repo:** [bugtracker-ai-frontend](https://github.com/vikash1311/bugtracker-frontend)
+- 🌐 **Live App:** [your-live-url.com](https://your-live-url.com)
+- 👤 **Portfolio:** [yourportfolio.com](https://yourportfolio.com)
 
 ---
 
@@ -183,4 +208,4 @@ GET    /api/users                   → List all users (Admin only)
 
 ## 📄 License
 
-MIT License — feel free to use this as a reference or template.
+MIT License
