@@ -4,7 +4,7 @@
 > Built with Java · Spring Boot · MySQL · JWT · Spring Security 7 · OpenAI API
 
 🔗 **Frontend Repo:** [bugtracker-ai-frontend](https://github.com/yourusername/bugtracker-ai-frontend)  
-🌐 **Live App:** (https://bugtracker-ai.netlify.app)
+🌐 **Live App:** [bugtracker](https://bugtracker-ai.netlify.app)
 
 ---
 
@@ -193,8 +193,8 @@ API runs at `http://localhost:8080`
 ## 🔗 Related
 
 - 🎨 **Frontend Repo:** [bugtracker-ai-frontend](https://github.com/vikash1311/bugtracker-ai-frontend)
-- 🌐 **Live App:** [your-live-url.com](https://bugtracker-ai.netlify.app)
-- 👤 **Portfolio:** [yourportfolio.com](https://vikash-gautam.netlify.app)
+- 🌐 **Live App:** [bugtracker](https://bugtracker-ai.netlify.app)
+- 👤 **Portfolio:** [VG](https://vikash-gautam.netlify.app)
 
 ---
 
