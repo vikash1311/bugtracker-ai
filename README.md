@@ -3,8 +3,8 @@
 > **Production-grade REST API for AI-powered bug tracking.**  
 > Built with Java · Spring Boot · MySQL · JWT · Spring Security 7 · OpenAI API
 
-🔗 **Frontend Repo:** [bugtracker-ai-frontend](https://github.com/yourusername/bugtracker-ai-frontend)  
-🌐 **Live App:** [bugtracker](https://bugtracker-ai.netlify.app)
+🔗 **Frontend Repo:** [bugtracker-ai-frontend](https://github.com/vikash1311/bugtracker-ai-frontend)  
+🌐 **Live App:** [bugtracker](https://bugtrackerai.netlify.app)
 
 ---
 
@@ -193,7 +193,7 @@ API runs at `http://localhost:8080`
 ## 🔗 Related
 
 - 🎨 **Frontend Repo:** [bugtracker-ai-frontend](https://github.com/vikash1311/bugtracker-ai-frontend)
-- 🌐 **Live App:** [bugtracker](https://bugtracker-ai.netlify.app)
+- 🌐 **Live App:** [bugtracker](https://bugtrackerai.netlify.app)
 - 👤 **Portfolio:** [VG](https://vikash-gautam.netlify.app)
 
 ---
